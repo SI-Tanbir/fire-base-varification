@@ -4,30 +4,36 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+
+<div class="relative flex flex-col justify-center h-screen overflow-hidden">
+    <div class="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-lg">
+        <h1 class="text-3xl font-semibold text-center text-purple-700">Login</h1>
+        <form class="space-y-4">
+            <div>
+                <label class="label">
+                    <span class="text-base label-text">Email</span>
+                </label>
+                <input type="text" placeholder="Email Address" class="w-full input input-bordered input-primary" />
+            </div>
+            <div>
+                <label class="label">
+                    <span class="text-base label-text">Password</span>
+                </label>
+                <input type="password" placeholder="Enter Password" class="w-full input input-bordered input-primary" />
+            </div>
+            <a href="#" class="text-xs text-gray-600 hover:underline hover:text-blue-600">Forget Password?</a>
+            <div>
+                <button class="btn btn-primary">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+
     </>
   )
 }
