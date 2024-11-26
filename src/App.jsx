@@ -8,22 +8,29 @@ import auth from './firebase/firebase.config'
 function App() {
 
     const [loginError,setLoginError]= useState('');
+    const [success,setSuccess]=useState('');
 const formHandle =(e)=>{
+
+    setLoginError('');
+    setSuccess('');
+
 
 
     e.preventDefault();
 
     const email=e.target.email.value;
     const password=e.target.password.value;
-    console.log(email);
-    console.log(password);
+    // console.log(email);
+    // console.log(password);
     
 
     createUserWithEmailAndPassword(auth,email,password)
     .then((result) => {
 
         const user =result.user;
-        console.log(user);
+        const token =user.accessToken;
+        setSuccess(token);
+        console.log(token);
 
     })
     .catch(error=>{
@@ -63,7 +70,8 @@ const formHandle =(e)=>{
                <input type="submit" value="submit" className='btn btn-primary' />
             </div>
         </form>
-        { loginError && <p>{loginError}</p>}
+        { loginError && <p className='text-red-600'>{loginError}</p>}
+        {success && <p className='text-green-600 font-bold'>successfully login in</p>}
     </div>
 </div>
 
