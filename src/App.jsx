@@ -4,6 +4,15 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
+const formHandle =(e)=>{
+
+    e.preventDefault();
+
+    console.log(e.target.email.value)
+    console.log(e.target.password.value)
+
+
+}
 
 
   return (
@@ -13,7 +22,7 @@ function App() {
 <div className="relative flex flex-col justify-center h-screen overflow-hidden">
     <div className="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-lg">
         <h1 className="text-3xl font-semibold text-center text-purple-700">Login</h1>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={formHandle}>
             <div>
                 <label className="label">
                     <span className="text-base label-text">Email</span>
