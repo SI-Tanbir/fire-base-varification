@@ -2,14 +2,30 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { createUserWithEmailAndPassword } from 'firebase/auth/cordova'
+import auth from './firebase/firebase.config'
 
 function App() {
 const formHandle =(e)=>{
 
     e.preventDefault();
 
-    console.log(e.target.email.value)
-    console.log(e.target.password.value)
+    const email=e.target.email.value;
+    const password=e.target.password.value;
+    console.log(email);
+    console.log(password);
+
+    createUserWithEmailAndPassword(auth,email,password)
+    .then((result) => {
+
+        const user =result.user;
+        console.log(user);
+
+    })
+    .catch(error=>{
+        console.error(error.code);
+        console.error(error.message);
+    })
 
 
 }
