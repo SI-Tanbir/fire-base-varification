@@ -6,7 +6,10 @@ import { createUserWithEmailAndPassword } from 'firebase/auth/cordova'
 import auth from './firebase/firebase.config'
 
 function App() {
+
+    const [loginError,setLoginError]= useState('');
 const formHandle =(e)=>{
+
 
     e.preventDefault();
 
@@ -14,6 +17,7 @@ const formHandle =(e)=>{
     const password=e.target.password.value;
     console.log(email);
     console.log(password);
+    
 
     createUserWithEmailAndPassword(auth,email,password)
     .then((result) => {
@@ -25,6 +29,9 @@ const formHandle =(e)=>{
     .catch(error=>{
         console.error(error.code);
         console.error(error.message);
+        setLoginError(error.message);
+
+       
     })
 
 
@@ -43,19 +50,20 @@ const formHandle =(e)=>{
                 <label className="label">
                     <span className="text-base label-text">Email</span>
                 </label>
-                <input type="text" placeholder="Email Address" className="w-full input input-bordered input-primary" name='email' />
+                <input type="text" placeholder="Email Address" className="w-full input input-bordered input-primary" name='email' required />
             </div>
             <div>
                 <label className="label">
                     <span className="text-base label-text">Password</span>
                 </label>
-                <input type="password" placeholder="Enter Password" className="w-full input input-bordered input-primary" name='password' />
+                <input type="password" placeholder="Enter Password" className="w-full input input-bordered input-primary" name='password' required/>
             </div>
             <a href="#" className="text-xs text-gray-600 hover:underline hover:text-blue-600">Forget Password?</a>
             <div>
                <input type="submit" value="submit" className='btn btn-primary' />
             </div>
         </form>
+        { loginError && <p>{loginError}</p>}
     </div>
 </div>
 
